@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
@@ -13,11 +13,7 @@ function TransactionDashboard() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    fetchTransactions();
-  }, [currentPage, search]);
-
-  const fetchTransactions = async () => {
+  const fetchTransactions = useCallback(async () => {
     try {
       const response = await axios.get(
         `https://product-transactions-79wj.onrender.com/api/transactions?page=${currentPage}&search=${search}`
@@ -27,7 +23,11 @@ function TransactionDashboard() {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [currentPage, search]);
+
+  useEffect(() => {
+    fetchTransactions();
+  }, [currentPage, search, fetchTransactions]);
 
   const changePage = (num) => {
     setCurrentPage((prev) => prev + num);
