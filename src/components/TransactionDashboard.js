@@ -4,7 +4,6 @@ import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { useNavigate } from "react-router-dom";
 import { MdNavigateNext } from "react-icons/md";
 
 function TransactionDashboard() {
@@ -13,8 +12,6 @@ function TransactionDashboard() {
   const [transactions, setTransactions] = useState([]);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const navigate = useNavigate();
-  // console.log(`${selectedYear}-${selectedMonth}`);
 
   useEffect(() => {
     fetchTransactions();
@@ -31,7 +28,6 @@ function TransactionDashboard() {
       console.log(error);
     }
   };
-  console.log(transactions);
 
   const changePage = (num) => {
     setCurrentPage((prev) => prev + num);
