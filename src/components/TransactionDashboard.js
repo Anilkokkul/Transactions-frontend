@@ -101,7 +101,7 @@ function TransactionDashboard() {
         <button className="btn btn-outline-primary" onClick={handleSearch}>
           Search
         </button>
-        <div className="d-flex m-auto justify-content-between mt-3 h-auto">
+        <div className="d-flex m-auto justify-content-between my-3 h-auto">
           <div className=" btn">Page No. {currentPage} </div>
           <div>
             <button
@@ -120,7 +120,7 @@ function TransactionDashboard() {
           </div>
           <div className=" btn">Per Page: 10</div>
         </div>
-        <div className="mt-5">
+        <div>
           <Table responsive striped bordered>
             <thead>
               <tr>
@@ -158,6 +158,25 @@ function TransactionDashboard() {
                 })}
             </tbody>
           </Table>
+          <div className="d-flex m-auto justify-content-between my-3 h-auto">
+            <div className=" btn">Page No. {currentPage} </div>
+            <div>
+              <button
+                className="btn text-info fw-bold m-0"
+                onClick={() => changePage(-1)}
+              >
+                Pervious
+              </button>
+              <span> - </span>
+              <button
+                className="btn text-info fw-bold"
+                onClick={() => changePage(1)}
+              >
+                Next
+              </button>
+            </div>
+            <div className=" btn">Per Page: 10</div>
+          </div>
         </div>
       </div>
     </>
