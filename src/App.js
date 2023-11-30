@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import TransactionDashboard from "./components/TransactionDashboard";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import TransactionsStatistics from "./components/TransactionsStatistics";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<TransactionDashboard />}></Route>
+          <Route
+            path="/statistics"
+            element={<TransactionsStatistics />}
+          ></Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
