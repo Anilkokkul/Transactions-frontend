@@ -12,25 +12,33 @@ function TransactionDashboard() {
   const [transactions, setTransactions] = useState([]);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   const fetchTransactions = useCallback(async () => {
     try {
-      const response = await axios.get(
-        `https://product-transactions-79wj.onrender.com/api/transactions?page=${currentPage}&search=${search}`
-      );
-      console.log(response.data);
+      const response =
+        search !== ""
+          ? await axios.get(
+              `https://product-transactions-79wj.onrender.com/api/transactions?page=${currentPage}&search=${search}`
+            )
+          : await axios.get(
+              `http://localhost:5000/get-transactions?month=${selectedYear}-${selectedMonth}`
+            );
+      setLoading(false);
       setTransactions(response.data.transactions);
     } catch (error) {
       console.log(error);
     }
-  }, [currentPage, search]);
+  }, [currentPage, search, selectedYear, selectedMonth]);
 
   useEffect(() => {
     fetchTransactions();
-  }, [currentPage, search, fetchTransactions]);
+  }, [currentPage, search, fetchTransactions, selectedYear, selectedMonth]);
 
   const changePage = (num) => {
-    setCurrentPage((prev) => prev + num);
+    if (currentPage + num > 0) {
+      setCurrentPage((prev) => prev + num);
+    }
   };
 
   const handleSearch = () => {
@@ -134,6 +142,7 @@ function TransactionDashboard() {
               </tr>
             </thead>
             <tbody>
+              {loading && <h2 className=" text-info text-center mt-4">Transactions are loading..</h2>}
               {transactions &&
                 transactions.map((transaction, index) => {
                   return (
