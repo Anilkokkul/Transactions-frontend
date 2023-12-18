@@ -142,7 +142,11 @@ function TransactionDashboard() {
               </tr>
             </thead>
             <tbody>
-              {loading && <h2 className=" text-info text-center mt-4">Transactions are loading..</h2>}
+              {loading && (
+                <h2 className=" text-info text-center mt-4">
+                  Transactions are loading..
+                </h2>
+              )}
               {transactions &&
                 transactions.map((transaction, index) => {
                   return (
@@ -150,7 +154,9 @@ function TransactionDashboard() {
                       <td>{index + 1}</td>
                       <td>{transaction.title}</td>
                       <td>{transaction.description}</td>
-                      <td className=" text-nowrap">$ {transaction.price}</td>
+                      <td className=" text-nowrap">
+                        $ {Math.ceil(transaction.price)}
+                      </td>
                       <td>{transaction.category}</td>
                       <td>{transaction.sold ? "yes" : "No"}</td>
                       <td>
