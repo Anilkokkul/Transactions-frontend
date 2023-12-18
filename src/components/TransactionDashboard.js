@@ -22,7 +22,7 @@ function TransactionDashboard() {
               `https://product-transactions-79wj.onrender.com/api/transactions?page=${currentPage}&search=${search}`
             )
           : await axios.get(
-              `http://localhost:5000/get-transactions?month=${selectedYear}-${selectedMonth}`
+              `https://product-transactions-79wj.onrender.com/get-transactions?month=${selectedYear}-${selectedMonth}`
             );
       setLoading(false);
       setTransactions(response.data.transactions);
