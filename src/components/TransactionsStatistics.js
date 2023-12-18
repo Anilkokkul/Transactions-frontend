@@ -89,7 +89,7 @@ function TransactionsStatistics() {
               <div className=" d-flex">
                 <h5 className="card-title text-start w-50">Total sale</h5>
                 <span className=" text-start">
-                  : {statistics.totalSaleAmount}
+                  : {Math.ceil(statistics.totalSaleAmount)}
                 </span>
               </div>
               <div className=" d-flex">
